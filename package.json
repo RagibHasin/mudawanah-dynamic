@@ -9,9 +9,12 @@
     "url": "https://github.com/RagibHasin/mudawanah"
   },
   "scripts": {
-    "start": "node ./dist/server/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "gulp"
+    "build": "gulp",
+    "pretest": "gulp test",
+    "test": "mocha --opts test/mocha.opts test/bin",
+    "coverage": "istanbul cover node_modules/mocha/bin/_mocha -- --opts test/mocha.opts dist/test",
+    "postcoverage": "npm run coverage:remap:lcov",
+    "coverage:remap:lcov": "remap-istanbul -i coverage/coverage.json -o coverage/lcov.info -t lcovonly"
   },
   "keywords": [
     "blog",
@@ -33,6 +36,8 @@
     "@types/node": "^7.0.31",
     "eslint": "^4.0.0",
     "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-node": "^5.0.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
     "gulp": "^3.9.1",
