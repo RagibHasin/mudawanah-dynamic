@@ -1,4 +1,4 @@
-import mudawanah, {
+import {
   IPlugin,
   IConfig as IConfigBase,
   IPost as IPostBase,

@@ -1,24 +1,40 @@
 {
   "name": "mudawanah-dynamic",
   "version": "0.1.0",
-  "description": "",
+  "description": "Likes👍 and Comments💬 for Mudawanah",
   "main": "./bin/main.js",
   "types": "./bin/main.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RagibHasin/mudawanah"
+  },
   "scripts": {
     "start": "node ./dist/server/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "gulp"
   },
+  "keywords": [
+    "blog",
+    "multilingual",
+    "static-site-generator",
+    "mudawanah",
+    "typescript",
+    "koa",
+    "pug"
+  ],
   "author": "Muhammad Ragib Hasin <ragib.hasin@gmail.com>",
   "license": "MIT",
-  "private": true,
   "dependencies": {
     "iridium": "^7.2.2",
-    "js-yaml": "^3.8.4",
+    "mudawanah": "^0.1.0",
     "querix": "^0.1.2"
   },
   "devDependencies": {
     "@types/node": "^7.0.31",
+    "eslint": "^4.0.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
     "gulp": "^3.9.1",
     "gulp-logger": "0.0.2",
     "gulp-sourcemaps": "^2.6.0",
