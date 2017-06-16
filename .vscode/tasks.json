@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "command": "gulp",
+  "isShellCommand": true,
+  "tasks": [
+    {
+      "taskName": "build",
+      "args": [],
+      "problemMatcher": "$gulp-tsc"
+    },
+    {
+      "taskName": "tslint",
+      "args": [],
+      "problemMatcher": "$tslint5"
+    },
+    {
+      "taskName": "watch",
+      "args": [],
+      "problemMatcher": [
+        "$gulp-tsc",
+        "$tslint5"
+      ]
+    }
+  ]
+}
