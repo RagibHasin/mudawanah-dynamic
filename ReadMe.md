@@ -1,6 +1,6 @@
 # mudawanah-dynamic
 
-**dynamic plugin for Mudawanah with like and comments**.
+**Likes👍 and Comments💬 for Mudawanah**.
 
 [![npm](https://img.shields.io/npm/v/mudawanah-dynamic.svg)](https://www.npmjs.com/package/mudawanah-dynamic)
 [![Build Status](https://travis-ci.org/RagibHasin/mudawanah-dynamic.svg?branch=master)](https://travis-ci.org/RagibHasin/mudawanah-dynamic)
