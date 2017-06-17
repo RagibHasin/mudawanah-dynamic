@@ -1,6 +1,6 @@
 {
   "name": "mudawanah-dynamic",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Likes👍 and Comments💬 for Mudawanah",
   "main": "./bin/main.js",
   "types": "./bin/main.d.ts",
