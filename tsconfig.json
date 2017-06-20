@@ -50,6 +50,7 @@
     "src"
   ],
   "exclude": [
+    "src/clientHelper.ts",
     "node_modules"
   ]
 }

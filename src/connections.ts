@@ -8,6 +8,8 @@ export interface DBComment {
 
   like: number
   dislike: number
+  likedBy: string[]
+  dislikedBy: string[]
 }
 
 export interface DBPostLocale {
@@ -15,6 +17,8 @@ export interface DBPostLocale {
   hit: number
   like: number
   dislike: number
+  likedBy: string[]
+  dislikedBy: string[]
   commnets: DBComment[]
 }
 
@@ -32,13 +36,17 @@ export class PostsInstance extends Instance<DBPost, PostsInstance> implements DB
     hit: Number,
     like: Number,
     dislike: Number,
+    likedBy: [String],
+    dislikedBy: [String],
     commnets: [{
       email: String,
       body: String,
       name: String,
       time: Date,
       like: Number,
-      dislike: Number
+      dislike: Number,
+      likedBy: [String],
+      dislikedBy: [String]
     }]
   }])
   locales: DBPostLocale[]
