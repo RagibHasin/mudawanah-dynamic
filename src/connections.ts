@@ -19,7 +19,7 @@ export interface DBPostLocale {
   dislike: number
   likedBy: string[]
   dislikedBy: string[]
-  commnets: DBComment[]
+  comments: DBComment[]
 }
 
 export interface DBPost {

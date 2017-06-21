@@ -4,10 +4,10 @@ import mudawanah, {
   IPost as IPostBase,
   IPage
 } from 'mudawanah'
-import * as iridium from 'iridium'
 import * as route from 'koa-router'
 import * as bodyparse from 'koa-bodyparser'
 import * as fs from 'fs'
+import * as gravatar from 'gravatar'
 
 import * as connections from './connections'
 
@@ -21,9 +21,15 @@ interface IConfig extends IConfigBase {
   }
 }
 
+interface IPostLocale extends connections.DBPostLocale {
+  comments: (connections.DBComment & { gravatar?: string })[]
+}
+
 interface IPost extends IPostBase {
   pluginsData?: {
-    dynamic?: connections.DBPostLocale & { injectionScript?: string }
+    dynamic?: IPostLocale & {
+      injectionScript?: string
+    }
   }
 }
 
@@ -53,7 +59,7 @@ const plugin: IPlugin = {
           _id: post.id,
           locales: [{
             locale: post.locale,
-            commnets: [],
+            comments: [],
             likedBy: [],
             dislikedBy: [],
             like: 0, dislike: 0, hit: 0
@@ -62,7 +68,7 @@ const plugin: IPlugin = {
       } else if (postI.locales.findIndex(o => o.locale === post.locale) === -1) {
         postI.locales.push({
           locale: post.locale,
-          commnets: [],
+          comments: [],
           likedBy: [],
           dislikedBy: [],
           like: 0, dislike: 0, hit: 0
@@ -126,7 +132,7 @@ const plugin: IPlugin = {
         }
         // Comment
         if (ctx.request.body.comment !== undefined) {
-          loc.commnets.push(ctx.request.body.comment)
+          loc.comments.push(ctx.request.body.comment)
         }
         ctx.body = { likes: loc.like, dislikes: loc.dislike }
         meta.locales[idx] = loc
@@ -145,20 +151,11 @@ const plugin: IPlugin = {
     if (post.pluginsData === undefined) {
       post.pluginsData = {}
     }
-    const info = await db.posts.findOne(post.id)
-    if (info != null) {
-      post.pluginsData.dynamic = info.locales.find(o => o.locale === post.locale)
-    } else {
-      post.pluginsData.dynamic = {
-        locale: post.locale,
-        commnets: [],
-        hit: 0,
-        like: 0,
-        dislike: 0,
-        likedBy: [],
-        dislikedBy: []
-      }
-      post.pluginsData.dynamic.injectionScript = inject(post)
+    const info = await db.posts.findOne(post.id) as connections.DBPost
+    post.pluginsData.dynamic = info.locales.find(o => o.locale === post.locale) as connections.DBPostLocale
+    post.pluginsData.dynamic.injectionScript = inject(post)
+    for (const comment of post.pluginsData.dynamic.comments) {
+      comment.gravatar = gravatar.url(comment.email, { default: 'retro' }, false)
     }
   }
 }
